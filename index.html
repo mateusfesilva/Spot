@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spot</title>
+  <link rel="shortcut icon" type="imagex/png" href="./img/LOGO.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Asap:wght@500&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    body {
+      height: 100%;
+      width: 100%;
+      animation: gradient 9s ease infinite;
+      background: linear-gradient(45deg, #202020, #1d1d1d, #2c2c2c, #0f0e0e) no-repeat;
+      background-size: 300% 300%;
+      overflow-x: hidden;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      padding-left: 0;
+    }
+
+    a {
+      animation: 0.7s ease-in;
+      font-size: 100%;
+      color: #ccc;
+      text-decoration: none;
+      font-family: "Asap";
+    }
+
+    a:hover {
+      color: #838383;
+    }
+
+    .logoimg {
+      position: relative;
+      height: 70px;
+    }
+
+    .logo {
+      font-size: 30px;
+    }
+
+    /* keyframes gradient está sendo usado para criar a animação degradê no background da navbar, dos dropdowns e do rodapé*/
+    @keyframes gradient {
+      0% {
+        background-position: 0 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0 50%;
+      }
+    }
+
+    nav {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      animation: gradient 9s ease infinite;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: linear-gradient(45deg, #202020, #1d1d1d, #2c2c2c, #0f0e0e) no-repeat;
+      height: 9vh;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      background-size: 300% 300%;
+      z-index: 200;
+    }
+
+    .nav-list {
+      animation: gradient 9s ease infinite;
+      list-style: none;
+      display: block;
+      position: absolute;
+      top: 9vh;
+      left: 0;
+      width: 300px;
+      height: auto;
+      background: linear-gradient(45deg, #202020, #1d1d1d, #2c2c2c, #0f0e0e) no-repeat;
+      align-items: center;
+      flex-direction: column;
+      justify-content: space-around;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in;
+      z-index: 100;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+      background-size: 300% 300%;
+    }
+
+    .nav-list li {
+      margin: 0;
+      opacity: 1;
+      width: 100%;
+      position: relative;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border-bottom: solid 1px #353535;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .nav-list a {
+      color: #fff;
+    }
+
+    .nav-list li:hover {
+      background: #474747;
+    }
+
+    .mobile-menu {
+      cursor: pointer;
+      display: block;
+      position: absolute;
+      left: 5%;
+    }
+
+    .mobile-menu div {
+      display: flex;
+      width: 20px;
+      height: 2px;
+      background: #fff;
+      margin: 4px;
+      transition: 0.3s;
+    }
+
+    /* media screen está sendo usado para fazer a responsividade do site */
+    @media only screen and (max-width: 735px) {
+      .img-1 {
+        position: sticky;
+      }
+
+      .img-2 {
+        position: sticky;
+      }
+
+      .img-3 {
+        position: sticky;
+      }
+
+      .carousel-control-prev {
+        size: 90%;
+      }
+
+      .carousel-control-next {
+        size: 80%;
+      }
+
+      .carousel-caption h5 {
+
+        font-size: 20px;
+      }
+
+      .carousel-caption p {
+        display: none;
+      }
+
+      .btn {
+        display: none;
+      }
+
+      .sobquiz {
+        padding-bottom: 100px;
+      }
+    }
+
+    .nav-list.active {
+      transform: translateX(0);
+    }
+
+    @keyframes navLinksFade {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* animação na ativação do "menu sanduíche"*/
+    .mobile-menu.active .line1 {
+      transform: rotate(-45deg) translate(-2px, 3px);
+    }
+
+    .mobile-menu.active .line2 {
+      opacity: 0;
+    }
+
+    .mobile-menu.active .line3 {
+      transform: rotate(45deg) translate(-5px, -7px);
+    }
+
+    .carousel-inner {
+      padding-top: 70px;
+    }
+
+    .carousel-indicators {
+      position: absolute;
+      right: 5px;
+    }
+
+    .carousel-caption {
+      top: 6rem;
+      bottom: 270px;
+      padding-left: 100px;
+      padding-right: 100px;
+    }
+
+    .carousel-caption h5 {
+      font-size: 80px;
+      position: relative;
+      top: 50px;
+    }
+
+    .carousel-caption p {
+      font-size: 20px;
+      position: relative;
+      top: 6rem;
+    }
+
+    .carousel-item {
+      background: no-repeat scroll center scroll;
+      -webkit-background-size: cover;
+      background-size: cover;
+    }
+
+    .carousel-item::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: #000;
+      opacity: 0.7;
+    }
+
+    .rodape {
+      margin-top: 3%;
+      height: 13.21003963011889vh;
+      width: 100%;
+      animation: gradient 10s ease infinite;
+      background: linear-gradient(45deg, #202020, #1d1d1d, #2c2c2c, #0f0e0e) no-repeat;
+      background-size: 300% 300%;
+      font-family: "Asap";
+      color: #ccc;
+      font-size: 12px;
+      position: relative;
+      padding-bottom: 15px;
+      top: 55px;
+    }
+
+    .itens {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      top: 30px;
+    }
+
+    .copy {
+      position: relative;
+      top: 30px;
+    }
+
+    .dropbtn {
+      background-color: #4caf4f00;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-bottom: solid 1px #353535;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 300px;
+      height: 9vh;
+      font-family: 'Asap';
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: linear-gradient(45deg, #202020, #1d1d1d, #2c2c2c, #0f0e0e) no-repeat;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      left: 100%;
+      top: 1%;
+      background-size: 300% 300%;
+      animation: gradient 9s ease infinite;
+    }
+
+    .dropdown-content a {
+      color: #fff;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* as tags ":hover" abaixo estão sendo usadas para fazer o dropright "assuntos"*/
+    .dropdown-content a:hover {
+      background-color: #727bad
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropbtn:hover {
+      background: #474747;
+    }
+
+    p {
+      font-family: Arial, Helvetica, sans-serif;
+      margin-top: 1%;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue';
+    }
+
+    .content {
+      animation: light 7s ease infinite;
+      background: linear-gradient(50deg, #a7a5a5, #ffffff, #ebebeb, #b1b1b1) no-repeat;
+      position: relative;
+      top: 30px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0px 4px 6px rgba(0.25, 0, 0, 0.25);
+      background-size: 300% 300%;
+    }
+
+    /* o keyframes light está sendo usado para fazer a animação gradiente no background do texto "O mundo Pós Pandemia"*/
+    @keyframes light {
+      0% {
+        background-position: 0 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0 50%;
+      }
+    }
+
+    .mundo {
+      position: relative;
+      font-size: 34px;
+    }
+
+    .text1 {
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 1%;
+      text-align: left;
+      font-size: 24px;
+    }
+
+    .sobquiz {
+      animation: light 7s ease infinite;
+      background: linear-gradient(50deg, #00a2ff, #4a7bd6, #6747da, #3844e7) no-repeat;
+      position: relative;
+      width: 100%;
+      top: 50px;
+      padding: 40px;
+      padding-right: 30%;
+      text-align: left;
+      box-shadow: 0px 4px 6px rgba(0.25, 0, 0, 0.25);
+      background-size: 300% 300%;
+    }
+
+    .sobquiz p {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 24px;
+      padding: 1%;
+    }
+
+    .sobquiz h3 {
+      font-size: 34px;
+      position: relative;
+      left: 68%;
+      font-family: 'Bebas Neue', cursive;
+    }
+
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    .download {
+      height: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .botao {
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 30px 70px;
+      font-size: 1.25rem;
+      position: relative;
+      left: 500px;
+      bottom: 150px;
+    }
+
+    .btn-1 {
+      color: black;
+      text-align: center;
+      z-index: 100;
+    }
+
+    .btn-1::after,
+    .btn-1::before {
+      border: 3px solid #000;
+      content: "";
+      position: absolute;
+      width: calc(100% - 6px);
+      height: calc(100% - 6px);
+      left: 0;
+      bottom: 0;
+      z-index: -1;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-1:hover::after {
+      transform: translate(-5px, -5px);
+    }
+
+    btn-1:hover::before {
+      transform: translate(-5px, -5px);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <!-- essas três divs (line1, 2 e 3) formam o ícone do "menu snaduíche"-->
+      <div class="mobile-menu">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+      <a class="logo" href="index.html"><img class="logoimg" src="img/LOGO.png">Spot</a>
+      <ul class="nav-list">
+        <a href="index.html">
+          <li>Início</li>
+        </a>
+        </a>
+        <div class="dropdown">
+          <button class="dropbtn">Assuntos</button>
+          <div class="dropdown-content">
+            <a href="IndexEd.html">Educação</a>
+            <a href="IndexEmp.html">Empresa</a>
+            <a href="indexSaude.html">Saúde</a>
+            <a href="indexTec.html">Tecnologia</a>
+            <a href="indexMundo.html">Mundo</a>
+          </div>
+        </div>
+        <a href="#quiz">
+          <li>Quiz</li>
+        </a>
+        <a href="img/DER_Covid-convertido.pdf" target="_blank">
+          <li>DER</li>
+        </a>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- aqui começa a parte do bootstrap para o carousel-->
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+        aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+        aria-label="Slide 5"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="img-4" src="./img/PandemiaMundo.jpeg" class="d-block w-100" width="100%" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <a href="indexMundo.html">
+            <h5>Mundo</h5>
+            <p>“O ano de 2020 ficará na história mundial como um ano muito marcante...”</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img class="img-4" src="./img/Ensino.jpg" class="d-block w-100" width="100%" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <a href="IndexEd.html">
+            <h5>Educação</h5>
+            <p>"A maioria das escolas não conta com o suporte necessário para o oferecimento do ensino remoto ou a
+              distância..."</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img class="img-4" src="./img/Empresas.jpeg" class="d-block w-100" width="100%" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <a href="IndexEmp.html">
+            <h5>Empresa</h5>
+            <p>"Com um mercado estável e com boas visões de renda relativa à empresa, muitos estabelecimentos de grande
+              e, principalmente, pequeno e médio porte se mantinham firmes nessa concorrência espacial, cada qual com
+              seu nicho, gastos calculados e renda positiva..."</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img class="img-4" src="./img/saude.jpeg" class="d-block w-100" width="100%" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <a href="indexSaude.html">
+            <h5>Saúde</h5>
+            <p>"Sabemos que para qualquer lugar que olhemos, haverá alguém falando sobre o Coronavírus..."</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <img class="img-4" src="./img/tecnologia.jpg" class="d-block w-100" width="100%" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <a href="indexTec.html">
+            <h5>Tecnologia</h5>
+            <p>"Embora haja preocupações em relação aos seus impactos econômicos, sociais e sanitários, o momento também
+              abre
+              margem para a inovação: cada vez mais se fala na aplicação da tecnologia na pandemia e no período que a
+              procederá..."</p>
+          </a>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <!-- aqui termina a parte do bootstrap para o carousel-->
+
+  <!-- começo da parte de conteúdo -->
+  <div class="content">
+    <h2 class="mundo">O Mundo Pós-Pandemia</h2>
+    <p class="text1">Recentemente, o mundo foi abalado por uma pandemia, transformando totalmente a rotina da população
+      mundial.
+      Muitos tiveram que se adaptar em suas casas, enquanto uns iam diretamente para a linha de frente, tal situação
+      gerou pânico,
+      visto que, o mundo não estava preparado para o coronavírus. A tecnologia foi de exímia importância, pois manteve o
+      mundo conectado
+      gerando novas informações a cada segundo. Tal situação também deixou cada vez mais evidente a desigualdade social
+      presente no mundo
+      atual.</p>
+  </div>
+  </div>
+
+  <div class="sobquiz" id="quiz">
+    <h3>Quiz</h3>
+    <p>Nós do grupo Spot fizemos um Quiz sobre o COVID-19 e a Pandemia, e gostaríamos que você jogasse.
+      O jogo conta com 10 perguntas. Cada pergunta tem cinco alternativas (uma correta e quatro erradas), e dois
+      "poderes" que irão te ajudar nesse desafio: a ajuda de universitários e
+      as cartas mágicas que eliminam de uma até três alternativas erradas.
+      Para baixar, basta clicar no botão "Download".
+    </p>
+  </div>
+  <div class="download">
+    <div class="botao">
+      <a href="./Quiz.rar" download class="btn btn-1">Download</a>
+    </div>
+  </div>
+  <!-- o rodapé -->
+  <footer class="footer">
+    <nav class="rodape">
+      <p class="copy">© Copyright 2021 - 2021 Spot.</p>
+      <div class="itens">
+        <p class="banco"><a href="img/DER_Covid-convertido.pdf" target="_blank">DER |</a></p>
+        <p class="quiz"><a href="index.html#quiz">Quiz</a></p>
+      </div>
+    </nav>
+  </footer>
+  <script src="js/mobile-navbar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spot - A educação na Pandemia</title>
+    <link rel="shortcut icon" type="imagex/png" href="./img/LOGO.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Asap:wght@500&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        body {
+            height: 100%;
+            width: 100%;
+            animation: gradient 9s ease infinite;
+            background: linear-gradient(45deg, #1ba13c, #32c97d, #1be9b5, #1dd0e7) no-repeat;
+            background-size: 300% 300%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            padding-left: 0;
+        }
+
+        a {
+            animation: 0.7s ease-in;
+            font-size: 100%;
+            color: #ccc;
+            text-decoration: none;
+            font-family: "Asap VF Beta";
+        }
+
+        a:hover {
+            color: #838383;
+        }
+
+        .logoimg {
+            display: none;
+            position: relative;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 30px;
+        }
+
+        /* keyframes gradient está sendo usado para criar a animação degradê no background da navbar, dos dropdowns e do rodapé*/
+        @keyframes gradient {
+            0% {
+                background-position: 0 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0 50%;
+            }
+        }
+
+        nav {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            animation: gradient 9s ease infinite;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: linear-gradient(45deg, #202020, #1d1d1d, #2c2c2c, #0f0e0e) no-repeat;
+            height: 9vh;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            background-size: 300% 300%;
+            z-index: 200;
+        }
+
+        .nav-list {
+            animation: gradient 9s ease infinite;
+            list-style: none;
+            display: block;
+            position: absolute;
+            top: 9vh;
+            left: 0;
+            width: 300px;
+            height: auto;
+            background: linear-gradient(45deg, #202020, #1d1d1d, #2c2c2c, #0f0e0e) no-repeat;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-around;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in;
+            z-index: 100;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+            background-size: 300% 300%;
+        }
+
+        .nav-list li {
+            margin: 0;
+            opacity: 1;
+            width: 100%;
+            position: relative;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-bottom: solid 1px #353535;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .nav-list a {
+            color: #fff;
+        }
+
+        .nav-list li:hover {
+            background: #474747;
+        }
+
+        .mobile-menu {
+            cursor: pointer;
+            display: block;
+            position: absolute;
+            left: 5%;
+        }
+
+        .mobile-menu div {
+            display: flex;
+            width: 20px;
+            height: 2px;
+            background: #fff;
+            margin: 4px;
+            transition: 0.3s;
+        }
+
+        .nav-list.active {
+            transform: translateX(0);
+        }
+
+        @keyframes navLinksFade {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* animação na ativação do "menu sanduíche"*/
+        .mobile-menu.active .line1 {
+            transform: rotate(-45deg) translate(-2px, 3px);
+        }
+
+        .mobile-menu.active .line2 {
+            opacity: 0;
+        }
+
+        .mobile-menu.active .line3 {
+            transform: rotate(45deg) translate(-5px, -7px);
+        }
+
+        .rodape {
+            margin-top: 3%;
+            height: 13.21003963011889vh;
+            width: 100%;
+            animation: gradient 10s ease infinite;
+            background: linear-gradient(45deg, #202020, #1d1d1d, #2c2c2c, #0f0e0e) no-repeat;
+            background-size: 300% 300%;
+            font-family: 'Asap';
+            color: #ccc;
+            font-size: 12px;
+            position: relative;
+            padding-bottom: 15px;
+            top: 55px;
+        }
+
+        .itens {
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            top: 30px;
+        }
+
+        .copy {
+            position: relative;
+            top: 30px;
+        }
+
+        .dropbtn {
+            background-color: #4caf4f00;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border-top: none;
+            border-right: none;
+            border-left: none;
+            border-bottom: solid 1px #353535;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 300px;
+            height: 9vh;
+            font-family: 'Asap';
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: linear-gradient(45deg, #202020, #1d1d1d, #2c2c2c, #0f0e0e) no-repeat;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            left: 100%;
+            top: 1%;
+            background-size: 300% 300%;
+            animation: gradient 9s ease infinite;
+        }
+
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* as tags ":hover" abaixo estão sendo usadas para fazer o dropright "assuntos"*/
+        .dropdown-content a:hover {
+            background-color: #474747
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropbtn:hover {
+            background: #474747;
+        }
+
+        .content {
+            animation: light 7s ease infinite;
+            background: linear-gradient(50deg, #a7a5a5, #ffffff, #ebebeb, #b1b1b1) no-repeat;
+            position: relative;
+            top: 30px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0.25, 0, 0, 0.25);
+            background-size: 300% 300%;
+        }
+
+        /* o keyframes light está sendo usado para fazer a animação gradiente no background do texto "O mundo Pós Pandemia"*/
+        @keyframes light {
+            0% {
+                background-position: 0 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0 50%;
+            }
+        }
+
+        .textxx {
+            animation: light 7s ease infinite;
+            background: linear-gradient(50deg, #b3b3b3, #d1d0d0, #f0efef, #dddada) no-repeat;
+            width: 1000px;
+            box-shadow: 0px 4px 6px rgba(0.25, 0, 0, 0.25);
+            position: relative;
+            left: 17%;
+            top: 55px;
+            background-size: 300% 300%;
+        }
+
+        .textxx img {
+            position: relative;
+            height: 600px;
+            right: 8.5%;
+            padding: 25px;
+        }
+
+        .textxx h3 {
+            font-family: 'Bebas Neue';
+            text-align: center;
+            padding-top: 6%;
+            padding-bottom: 5%;
+            color: black;
+            font-size: 70px;
+        }
+
+        .textxx p {
+            text-align: center;
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-left: 12%;
+            margin-right: 12%;
+            font-size: 20px;
+            padding-bottom: 30px;
+        }
+
+        @media screen and (max-width: 800px) {
+
+            body {
+                overflow-x: hidden;
+            }
+
+            .textxx {
+                left: 0;
+                right: 0;
+                width: 445px;
+            }
+
+            .textxx img {
+                right: 80px;
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <!-- essas três divs (line1, 2 e 3) formam o ícone do "menu snaduíche"-->
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <a class="logo" href="index.html"><img class="logoimg" src="img/LOGO.png">Spot | Educação</a>
+            <ul class="nav-list">
+                <a href="index.html">
+                    <li>Início</li>
+                </a>
+                <div class="dropdown">
+                    <button class="dropbtn">Assuntos</button>
+                    <div class="dropdown-content">
+                        <a href="IndexEd.html">Educação</a>
+                        <a href="IndexEmp.html">Empresa</a>
+                        <a href="indexSaude.html">Saúde</a>
+                        <a href="indexTec.html">Tecnologia</a>
+                        <a href="indexMundo.html">Mundo</a>
+                    </div>
+                </div>
+                <a href="index.html#quiz">
+                    <li>Quiz</li>
+                </a>
+                <a href="img/DER_Covid-convertido.pdf" target="_blank">
+                    <li>DER</li>
+                </a>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="textxx">
+        <h3>A educação na pandemia</h3>
+        <p>A maioria das escolas não conta com o suporte necessário para o oferecimento do ensino remoto ou a distância.
+            Até
+            então as plataformas digitais eram aproveitadas pela minoria dos estudantes da Educação Básica. Do dia para
+            a
+            noite as escolas precisaram encontrar maneiras de se adaptar a essas “novas tecnologias” – que não são tão
+            novas
+            assim.
+            As crianças e os jovens também não estavam acostumados a rotinas pesadas de estudos em casa. De maneira
+            geral, os
+            estudantes não possuem a maturidade e autonomia exigidas no ensino a distância, em especial na Educação
+            Infantil e
+            no Ensino Fundamental.
+            <img src="img/PandemiaEducacao.jpg">
+            As dificuldades existem, mas o importante é que saibamos identificar essas falhas, nos dedicar e demonstrar
+            esforços para corrigi-las.
+            Outro problema que ficou evidente na educação com a pandemia do Coronavírus é a desigualdade social e de
+            acesso a
+            tecnologias, o que causou um abismo entre aqueles que podem dar continuidade ao seu processo de aprendizagem
+            e
+            outros que sequer possuem um dispositivo eletrônico com conexão à internet dentro. O motivo não foi
+            agradável, é
+            verdade, mas o distanciamento social e a suspensão das aulas presenciais impuseram um momento de reflexão
+            para
+            toda a comunidade escolar. Educadores, pesquisadores e gestores da área da Educação estão buscando meios de
+            renovar o ensino.
+            Por sua vez, as escolas precisam ensinar os estudantes a explorarem sua criatividade para solucionar
+            problemas
+            complexos, e não apenas decorarem o conteúdo para obterem sucesso em provas – vestibulares que são a base
+            das
+            escolas inovadoras.
+        </p>
+
+    </div>
+    <footer class="footer">
+        <nav class="rodape">
+            <p class="copy">© Copyright 2021 - 2021 Spot.</p>
+            <div class="itens">
+                <p class="banco"><a href="img/DER_Covid-convertido.pdf" target="_blank">DER |</a></p>
+                <p class="quiz"><a href="index.html#quiz">Quiz</a></p>
+            </div>
+        </nav>
+    </footer>
+    <script src="js/mobile-navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

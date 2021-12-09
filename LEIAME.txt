@@ -1,0 +1,2 @@
+Para uma experiência completa na visualização do nosso site, instale as fontes.
+Basta entrar em configuracões de fontes e arrastar os arquivos para a área indicada.
